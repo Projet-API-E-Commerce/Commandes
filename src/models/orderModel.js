@@ -1,11 +1,18 @@
-class Order {
-  constructor(id, totalPrice, /* autres attributs */) {
-      this.id = id;
-      this.totalPrice = totalPrice;
-      // Initialiser d'autres attributs ici
-  }
 
-  // Vous pouvez ajouter des méthodes pour manipuler l'objet Order si nécessaire
+const db = require('../config/db');
+
+async function getAllOrders() {
+    try {
+        return await db.executeQuery('SELECT * FROM orders');
+    } catch (error) {
+        throw error;
+    }
 }
 
-module.exports = Order;
+// Implémentez les autres fonctions de la même manière
+// ...
+
+module.exports = {
+    getAllOrders,
+    // ... autres fonctions
+};

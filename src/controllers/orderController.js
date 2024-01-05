@@ -1,16 +1,15 @@
 const db = require('../config/db');
 
-const orderService = require('../services/orderServices');
+const orderModel = require('../models/orderModel');
 
 async function getAllOrders(req, res) {
     try {
-        const orders = await orderService.getAllOrders();
+        const orders = await orderModel.getAllOrders();
         res.json(orders);
     } catch (error) {
         res.status(500).send('Erreur lors de la récupération des commandes');
     }
 }
-
 
 function getOrderById(req, res) {
   // Logique pour retourner un ordre spécifique par ID
