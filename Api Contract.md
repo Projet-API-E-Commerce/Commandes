@@ -31,6 +31,46 @@ Returns the specified order.
     * **Code:** 401  
       **Content:** `{ error : "You are unauthorized to make this request." }`
 
+**GET /orders/product/:id**
+----
+Returns orders with specified product.
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+* **Code:** 200  
+  **Content:**  `{ <order_object> }`
+* **Error Response:**
+    * **Code:** 404  
+      **Content:** `{ error : "Product doesn't exist" }`  
+      OR
+    * **Code:** 401  
+      **Content:** `{ error : "You are unauthorized to make this request." }`
+
+**GET /orders/user/:id**
+----
+Returns orders with specified user.
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+* **Code:** 200  
+  **Content:**  `{ <order_object> }`
+* **Error Response:**
+    * **Code:** 404  
+      **Content:** `{ error : "User doesn't exist" }`  
+      OR
+    * **Code:** 401  
+      **Content:** `{ error : "You are unauthorized to make this request." }`
+
 **POST /orders**
 ----
 Creates a new order and returns the new object.
