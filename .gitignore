@@ -5446,3 +5446,5 @@
 /app/node_modules/yargs-parser/package.json
 /app/node_modules/yargs-parser/README.md
 /app/node_modules/.package-lock.json
+!/app/package.json
+!/app/package-lock.json

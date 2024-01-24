@@ -9,7 +9,7 @@ Returns all orders in the system.
   Content-Type: application/json
 * **Success Response:**
 * **Code:** 200  
-  **Content:**  
+  **Content:**
 
 **GET /orders/:id**
 ----
@@ -78,7 +78,7 @@ Creates a new order and returns the new object.
   None
 * **Headers**  
   Content-Type: application/json
-* **Data Params**  
+* **Data Params**
 * **Success Response:**
 * **Code:** 201  
   **Content:**  `{ <order_object> }`
@@ -88,7 +88,7 @@ Creates a new order and returns the new object.
 Updates fields on the specified order and returns the updated object.
 * **URL Params**  
   *Required:* `id=[integer]`
-* **Data Params**  
+* **Data Params**
 * **Headers**  
   Content-Type: application/json  
   Authorization: Bearer `<OAuth Token>`

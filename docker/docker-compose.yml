@@ -1,12 +1,12 @@
 version: "3"
 
 services:
-  ms_users_app:
+  ms_orders_app:
     container_name: ms_orders_app
     restart: unless-stopped
     build:
       context: ../
-      dockerfile: docker/app/local.Dockerfile
+      dockerfile: docker/app/Dockerfile
     environment:
       - APP_ENV=dev
       - LANG=fr_FR.UTF-8
@@ -22,7 +22,7 @@ services:
     networks:
       - app-network
 
-  ms-users_db:
+  ms-orders_db:
     image: postgres
     container_name: ms_orders_db
     restart: unless-stopped

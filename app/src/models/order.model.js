@@ -1,4 +1,5 @@
 import { Model, DataTypes } from "sequelize";
+import { addressHasRequiredFields, addressNonEmptyFields } from "../services/order.service.js";
 
 class Order extends Model {
     static init(sequelize) {
@@ -10,42 +11,39 @@ class Order extends Model {
                     primaryKey: true,
                     type: DataTypes.INTEGER,
                 },
-                name: {
+                status: {
                     allowNull: false,
-                    type: DataTypes.STRING(255),
+                    type: DataTypes.STRING(30),
                 },
-                description: {
+                products: {
                     allowNull: true,
-                    default: null,
-                    type: DataTypes.TEXT,
+                    type: DataTypes.ARRAY(DataTypes.INTEGER),
                 },
-                data: {
-                    allowNull: true,
-                    default: null,
-                    type: DataTypes.TEXT,
-                },
-                is_out: {
+                client_id: {
                     allowNull: false,
-                    type: DataTypes.BOOLEAN,
-                    default: false,
+                    type: DataTypes.INTEGER,
                 },
+                delivery_address: {
+                    allowNull: true,
+                    type: DataTypes.JSONB,
+                    validate: {
+                        addressHasRequiredFields,
+                        addressNonEmptyFields
+                    }
+                },
+                billing_address: {
+                    allowNull: true,
+                    type: DataTypes.JSONB,
+                    validate: {
+                        addressHasRequiredFields,
+                        addressNonEmptyFields
+                    }
+                }
             },
             {
                 sequelize,
             }
         );
-    }
-
-    static associate({ Domain }) {
-        Order.belongsTo(Domain, {
-            foreignKey: {
-                name: "domain_id",
-                allowNull: false,
-                type: DataTypes.INTEGER,
-            },
-            as: "domain",
-        });
-        // Une Order appartient à un domaine
     }
 }
 

@@ -34,6 +34,7 @@ class Database {
             );
 
             await this.sequelize.authenticate();
+            await this.sequelize.sync({ force: true });
             console.log("# DB Connection has been established successfully.");
         } catch (err) {
             throw err;
