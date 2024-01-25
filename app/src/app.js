@@ -2,7 +2,6 @@ import express from "express";
 import Database from "./database/index.js";
 import routes from "./routes/index.js";
 import "dotenv/config";
-console.log(process.env.DATABASE_DIALECT);
 
 // const Order = require('./models/orderModel');
 
@@ -43,10 +42,10 @@ app.use((error, req, res, next) => {
 
 try {
     await Database.connect();
-    Database.init();
+    await Database.init();
 } catch (err) {
-    console.error();
-    `# Failed to start DB:\n\n${err}`;
+    console.error(
+    `# Failed to start DB:\n\n${err}`);
 }
 
 try {

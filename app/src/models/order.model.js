@@ -17,6 +17,7 @@ class Order extends Model {
                 },
                 products: {
                     allowNull: true,
+                    default: [],
                     type: DataTypes.ARRAY(DataTypes.INTEGER),
                 },
                 client_id: {
@@ -25,6 +26,7 @@ class Order extends Model {
                 },
                 delivery_address: {
                     allowNull: true,
+                    default: null,
                     type: DataTypes.JSONB,
                     validate: {
                         addressHasRequiredFields,
@@ -33,11 +35,17 @@ class Order extends Model {
                 },
                 billing_address: {
                     allowNull: true,
+                    default: null,
                     type: DataTypes.JSONB,
                     validate: {
                         addressHasRequiredFields,
                         addressNonEmptyFields
                     }
+                },
+                date: {
+                    allowNull: true,
+                    default: null,
+                    type: DataTypes.DATE,
                 }
             },
             {

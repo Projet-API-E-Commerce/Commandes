@@ -14,7 +14,8 @@ const {
 class Database {
     sequelize = null;
 
-    constructor() {}
+    constructor() {
+    }
 
     async connect() {
         try {
@@ -34,7 +35,6 @@ class Database {
             );
 
             await this.sequelize.authenticate();
-            await this.sequelize.sync({ force: true });
             console.log("# DB Connection has been established successfully.");
         } catch (err) {
             throw err;
@@ -48,7 +48,10 @@ class Database {
         Object.values(models)
             .filter((model) => typeof model.associate === "function")
             .forEach((model) => model.associate(models));
+
+        this.sequelize.sync({force: true});
     }
+
 }
 
 export default new Database();
