@@ -1,0 +1,268 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Commandes",
+    "version": "1.0.0",
+    "description": "Swagger du micro-service des commandes"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Serveur de développement local"
+    }
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "Liste toutes les commandes",
+        "description": "Returns all orders in the system.",
+        "responses": {
+          "200": {
+            "description": "Liste des commandes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crée une nouvelle commande",
+        "description": "Creates a new order and returns the new object.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Commande"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Commande créée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "summary": "Trouve une commande par ID",
+        "description": "Returns the specified order.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Détails de la commande",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Modifie la commande spécifié",
+        "description": "Updates fields on the specified order and returns the updated object.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "value"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Commande modifié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Supprime une commande par ID",
+        "description": "Delete the specified order.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Suppression de la commande",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/product/{id}": {
+      "get": {
+        "summary": "Liste les commandes avec un produit spécifique",
+        "description": "Returns orders with specified product.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des commandes avec un produit spécifique",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/user/{id}": {
+      "get": {
+        "summary": "Trouve les commandes avec un utilisateur spécifique",
+        "description": "Returns orders with specified user.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des commandes avec un utilisateur spécifique",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Commande": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique de la commande"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut de la commande"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "description": "Ensemble des produits de la commande"
+            }
+          },
+          "client_id": {
+            "type": "integer",
+            "description": "Id du client associé"
+          },
+          "delivery_address": {
+            "type": "string",
+            "description": "Adresse de livraison"
+          },
+          "billing_address": {
+            "type": "string",
+            "description": "Adresse de facturation"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date de passage de la commande"
+          }
+        }
+      }
+    }
+  }
+}

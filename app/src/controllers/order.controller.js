@@ -45,7 +45,7 @@ export const UpdateOrder = async (req, res) => {
         if (isNaN(id)) {
             return res.status(400).send("Identifiant invalide");
         }
-
+        await decrementStock(req.body.products);
         const [updated] = await Order.update(req.body, {
             where: { id: id }
         });
@@ -139,7 +139,7 @@ export const PayOrder = async (req, res) => {
 
         let totalAmount = 0;
         for (const productId of order.products) {
-            const productResponse = await axios.get(`/product/:id`);
+            const productResponse = await axios.get(`/products/:id`);
             totalAmount += productResponse.data.price;
         }
 
@@ -149,9 +149,38 @@ export const PayOrder = async (req, res) => {
     }
 };
 
+export const decrementStock = async (products) => {
+    try {
+        // Boucle sur chaque produit pour décrémenter le stock
+        for (const productId of products) {
+            const url = `/stocks/${productId}`;
+            await axios.patch(url, { decrement: 1 });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la décrémentation du stock:', error);
+        throw new Error('Échec de la décrémentation du stock');
+    }
+};
+
+
+export const validateOrder = async (req, res) => {
+    try {
+        const order = req.body;
+
+        // Parcourir chaque produit dans le panier de la commande
+        for (const productId of order.products) {
+            await modifyProductStock(productId);
+        }
+
+        return res.status(200).send('Commande validée et stock des produits mis à jour');
+    } catch (err) {
+        return res.status(500).send('Erreur lors de la validation de la commande: ' + err.message);
+    }
+};
+
 
 /*/product/modify/{id}*/
 
 export default {
-    GetOrders, GetOrder, CreateOrder, UpdateOrder, DeleteOrders, GetClientHistory, GetOrdersByProductId, PayOrder,
+    GetOrders, GetOrder, CreateOrder, UpdateOrder, DeleteOrders, GetClientHistory, GetOrdersByProductId, PayOrder, decrementStock, validateOrder
 };

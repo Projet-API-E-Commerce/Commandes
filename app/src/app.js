@@ -2,6 +2,7 @@ import express from "express";
 import Database from "./database/index.js";
 import routes from "./routes/index.js";
 import bodyParser from "body-parser";
+import axios from "axios";
 import "dotenv/config";
 
 // const Order = require('./models/orderModel');
