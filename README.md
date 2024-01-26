@@ -13,7 +13,7 @@ Ce projet est une application de gestion des commandes pour une API E-Commerce. 
 - GET /orders/product/:id: Récupère les commandes contenant un produit spécifique.
 - GET /orders/user/:id: Récupère les commandes d'un utilisateur spécifique.
 - POST /orders: Crée une nouvelle commande.
-- PATCH /orders/:id: Met à jour une commande spécifique.
+- PUT /orders/:id: Met à jour une commande spécifique.
 - DELETE /orders/:id: Supprime une commande spécifique.
 
 ## Technologies Utilisées
