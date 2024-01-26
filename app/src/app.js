@@ -1,6 +1,7 @@
 import express from "express";
 import Database from "./database/index.js";
 import routes from "./routes/index.js";
+import bodyParser from "body-parser";
 import "dotenv/config";
 
 // const Order = require('./models/orderModel');
@@ -13,8 +14,8 @@ import "dotenv/config";
 // tout les require en import
 
 const app = express();
-
-//app.use(bodyParser.json());
+app.use(express.json());
+app.use(bodyParser.json());
 
 // Utilisation des routes pour les commandes
 //app.use('/orders', orderRoutes);

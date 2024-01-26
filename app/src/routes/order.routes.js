@@ -1,7 +1,7 @@
 // order.routes.js
 
 import express from 'express';
-import {GetOrders, GetOrder, CreateOrder, UpdateOrder, DeleteOrders} from "../controllers/order.controller.js";
+import {GetOrders, GetOrder, CreateOrder, UpdateOrder, DeleteOrders, GetClientHistory, GetOrdersByProductId} from "../controllers/order.controller.js";
 
 const orderRouter = express.Router();
 orderRouter.routerName = "orderRouter";
@@ -11,6 +11,10 @@ orderRouter.get("/test", (req, res) => res.send("hello world"))
 orderRouter.get("/orders", GetOrders);
 
 orderRouter.get("/orders/:id", GetOrder);
+
+orderRouter.get('/orders/client/:id', GetClientHistory);
+
+orderRouter.get('/orders/product/:id', GetOrdersByProductId);
 
 orderRouter.post("/orders", CreateOrder);
 
