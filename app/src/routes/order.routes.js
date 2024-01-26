@@ -16,6 +16,8 @@ orderRouter.get('/orders/client/:id', GetClientHistory);
 
 orderRouter.get('/orders/product/:id', GetOrdersByProductId);
 
+orderRouter.patch('/orders/:id', UpdateOrder);
+
 orderRouter.post("/orders", CreateOrder);
 
 orderRouter.put("/orders/:id", UpdateOrder);
