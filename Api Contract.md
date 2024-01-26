@@ -120,3 +120,46 @@ Deletes the specified order.
       OR
     * **Code:** 401  
       **Content:** `{ error : "You are unauthorized to make this request." }`
+
+
+
+
+**PATCH /orders/pay/:id**
+----
+Effectue le paiement de la commande spécifiée et retourne le montant total.
+* **URL Params**  
+  *Required:* `id=[integer]`
+* **Data Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+    * **Code:** 200  
+      **Content:** `{ message: "Paiement effectué", totalAmount: <montant_total> }`
+* **Error Response:**
+    * **Code:** 404  
+      **Content:** `{ error : "Commande non trouvée." }`  
+      OR
+    * **Code:** 400  
+      **Content:** `{ error : "Identifiant de commande invalide" }`  
+      OR
+    * **Code:** 500  
+      **Content:** `{ error : "Erreur interne du serveur" }`
+
+**PATCH /orders/validate**
+----
+Valide la commande et met à jour le stock des produits.
+* **URL Params**  
+  None
+* **Data Params**
+    * **Required:** `{ <order_object> }` (Objet de commande contenant les identifiants des produits)
+* **Headers**  
+  Content-Type: application/json  
+  Authorization: Bearer `<OAuth Token>`
+* **Success Response:**
+    * **Code:** 200  
+      **Content:** `{ message: "Commande validée et stock des produits mis à jour" }`
+* **Error Response:**
+    * **Code:** 500  
+      **Content:** `{ error : "Erreur lors de la validation de la commande: <message_erreur>" }`
