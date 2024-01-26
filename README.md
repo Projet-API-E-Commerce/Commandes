@@ -25,9 +25,10 @@ Ce projet est une application de gestion des commandes pour une API E-Commerce. 
 ## Installation et Configuration
 
 - Clonez le dépôt.
-- Aller dans le dossier app
+
+- Aller dans le dossier docker
 ```sh
-cd app/
+cd docker/
 ```
 
 - Installez l'image et les containers docker
